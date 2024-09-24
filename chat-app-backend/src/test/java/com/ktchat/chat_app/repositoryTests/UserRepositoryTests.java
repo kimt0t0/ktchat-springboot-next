@@ -1,5 +1,7 @@
 package test.java.com.ktchat.chat_app.repositoryTests;
 
+import org.junit.jupiter.api.Test;
+
 @DataJpaTest
 public class UserRepositoryTests {
 

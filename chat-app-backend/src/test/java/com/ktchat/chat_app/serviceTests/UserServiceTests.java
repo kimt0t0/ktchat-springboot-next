@@ -1,5 +1,11 @@
 package test.java.com.ktchat.chat_app.serviceTests;
 
+import org.junit.jupiter.api.Test;
+
+import main.java.com.ktchat.chat_app.dtos.UserDto;
+import main.java.com.ktchat.chat_app.models.User;
+import main.java.com.ktchat.chat_app.repositories.UserRepository;
+
 @ExtendWith(MockitoExtension.class)
 // @DataJpaTest
 public class UserServiceTests {
@@ -40,7 +46,7 @@ public class UserServiceTests {
         verify(userService, times(1)).save(any(User.class));
         // assert that response status is code HttpStatus.CREATED
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals("Success: User detailed successfully saved !", response.getBody());
+        assertEquals("Success: User details successfully saved !", response.getBody());
     }
 
     @Test
@@ -61,6 +67,11 @@ public class UserServiceTests {
         verify(userService, times(0)).save(any(User.class));
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         assertEquals("Failure: an internal server error has occured !", response.getBody());
+    }
+
+    @AfterEach
+    public void tearDown() {
+        // Reset mocks or any shared state if necessary
     }
 
 }
