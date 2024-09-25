@@ -1,5 +1,21 @@
 package test.java.com.ktchat.chat_app.ServicesTests;
 
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+import java.util.Optional;
+import java.util.UUID;
+
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+
+import com.chatapp.exception.UserAlreadyExistsException;
+import com.chatapp.exception.UserNotFoundException;
+import com.chatapp.model.User;
+import com.chatapp.repository.UserRepository;
+import com.chatapp.service.UserService;
+
 public class UserServiceTests {
 
     @Mock

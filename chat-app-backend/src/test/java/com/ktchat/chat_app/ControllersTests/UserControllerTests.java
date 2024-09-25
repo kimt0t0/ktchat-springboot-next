@@ -1,5 +1,19 @@
 package test.java.com.ktchat.chat_app.ControllersTests;
 
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import java.util.UUID;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.web.servlet.MockMvc;
+
+import com.chatapp.controller.UserController;
+import com.chatapp.model.User;
+import com.chatapp.service.UserService;
+
 public class UserControllerTests {
 
     @Autowired
