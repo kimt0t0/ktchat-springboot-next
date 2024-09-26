@@ -23,6 +23,24 @@ npm run dev
 </details>
 
 <details>
+<summary>Refaire une installation propre</summary>
+Installation simple:
+```sh
+mvn clean install
+```
+
+Si cela ne fonctionne pas, forcer à refaire l'installation en nettoyant les fichiers générés et en re-téléchargeant les dépendances:
+```sh
+mvn clean install -U
+```
+
+Si les erreurs sont causées par les tests uniquement, faire une installation qui passe les tests pour le moment:
+```sh
+mvn clean install -DskipTests
+```
+</details>
+
+<details>
 <summary>Lancer les tests côté back</summary>
 ```sh
 cd chat-app-backend
@@ -36,4 +54,19 @@ mvn test
 cd chat-app-frontend
 npm run test
 ```
+</details>
+
+## VS Code Config
+<details>
+<summary>Plugins utiles</summary>
+- Language Support for Java (by Red Hat)
+- Extension Pack for Java
+- Maven for Java
+- Spring boot Extension Pack
+</details>
+
+<details>
+<summary>Si les imports auto ne fonctionnent pas (pour Lombok par exemple)</summary>
+- ctrl + shift + p
+- coller la ligne suivante et exécuter: "Java: Clean the Java language server workspace"
 </details>
