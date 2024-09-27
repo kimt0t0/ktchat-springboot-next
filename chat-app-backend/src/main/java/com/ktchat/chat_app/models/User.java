@@ -2,6 +2,7 @@ package com.ktchat.chat_app.models;
 
 import java.util.List;
 
+import com.ktchat.chat_app.dto.UserDto;
 import com.ktchat.chat_app.enums.RoleEnum;
 
 import jakarta.persistence.CascadeType;
@@ -46,5 +47,15 @@ public class User extends AbstractEntity {
 
     @ManyToMany(targetEntity = Tchat.class, mappedBy = "members")
     private List<Tchat> participatedTchats;
+
+    public static User toEntity(UserDto userDto) {
+        //
+        return User.builder()
+                .username(userDto.getUsername())
+                .email(userDto.getEmail())
+                .password(userDto.getPassword())
+                .role(userDto.getRole())
+                .build();
+    }
 
 }

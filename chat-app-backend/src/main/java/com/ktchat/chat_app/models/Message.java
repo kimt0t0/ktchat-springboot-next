@@ -1,5 +1,7 @@
 package com.ktchat.chat_app.models;
 
+import com.ktchat.chat_app.dto.MessageDto;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -22,11 +24,25 @@ public class Message extends AbstractEntity {
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "id_author")
+    @JoinColumn(name = "id_author", nullable = false)
     private User author;
 
     @ManyToOne
-    @JoinColumn(name = "id_tchat")
+    @JoinColumn(name = "id_tchat", nullable = false)
     private Tchat tchat;
+
+    public static Message toEntity(MessageDto messageDto) {
+        return Message.builder()
+                .content(messageDto.getContent())
+                .author(
+                        User.builder()
+                                .id(messageDto.getAuthorId())
+                                .build())
+                .tchat(
+                        Tchat.builder()
+                                .id(messageDto.getTchatId())
+                                .build())
+                .build();
+    }
 
 }

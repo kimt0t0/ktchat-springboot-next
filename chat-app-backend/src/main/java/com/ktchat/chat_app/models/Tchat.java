@@ -2,6 +2,8 @@ package com.ktchat.chat_app.models;
 
 import java.util.List;
 
+import com.ktchat.chat_app.dto.TchatDto;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,7 +26,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 public class Tchat extends AbstractEntity {
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 150)
     private String title;
 
     @Column
@@ -40,5 +42,16 @@ public class Tchat extends AbstractEntity {
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "tchats_messages", joinColumns = @JoinColumn(name = "tchat_id"), inverseJoinColumns = @JoinColumn(name = "message_id"))
     private List<User> members;
+
+    public static Tchat toEntity(TchatDto tchatDto) {
+        return Tchat.builder()
+                .title(tchatDto.getTitle())
+                .isPrivate(tchatDto.isPrivate())
+                .owner(
+                        User.builder()
+                                .id(tchatDto.getOwnerId())
+                                .build())
+                .build();
+    }
 
 }
